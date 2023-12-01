@@ -1,26 +1,12 @@
+import { getLinesFromText } from "../helpers/fileReader.js";
+
 const FIRST_NUM = /\d/;
 const LAST_NUM = /\d(?=[^\d]*$)/;
 let sum = 0;
 
-let fileInput = document.getElementById("puzzle-input");
-fileInput.addEventListener("change", function () {
-  var reader = new FileReader();
-  reader.onload = function () {
-    sumLineValues(this.result);
-  };
-  reader.readAsText(this.files[0]);
-});
+const data = getLinesFromText("./puzzle.txt");
 
-const sumLineValues = (lines) => {
-  let nums = handleLines(lines);
-  sum += parseInt(nums);
-};
-
-const handleLines = (lines) => {
-  return lines.split(/\r\n|\n|\r/).map(handleLine);
-};
-
-const handleLine = (line) => {
+data.forEach((line) => {
   const firstMatch = line.match(FIRST_NUM);
   const lastMatch = line.match(LAST_NUM);
 
@@ -29,8 +15,9 @@ const handleLine = (line) => {
     const last = lastMatch[0];
 
     if (first !== undefined && last !== undefined) {
-      sum += parseInt(first+last);
-      console.log(sum)
+      sum += parseInt(first + last);
     }
   }
-};
+});
+
+console.log(sum);
