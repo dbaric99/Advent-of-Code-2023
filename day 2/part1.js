@@ -26,4 +26,4 @@ data.forEach(function (value) {
   }
 });
 
-console.log(sum);
+
