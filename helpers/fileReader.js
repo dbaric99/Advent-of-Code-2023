@@ -1,8 +1,11 @@
-export function getLinesFromText(fileName) {
-  var request = new XMLHttpRequest();
-  request.open("GET", fileName, false);
-  request.send(null);
-  var text = request.responseText;
-  var lines = text.split("\n");
-  return lines;
+const fs = require('fs');
+const util = require('util');
+
+const readFile = util.promisify(fs.readFile);
+
+async function getLinesFromText(filePath) {
+  const data = await readFile(filePath, 'utf8');
+  return data.split('\n');
 }
+
+module.exports = { getLinesFromText };
