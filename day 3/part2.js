@@ -61,7 +61,7 @@ const findAllNumbersNextToCharacter = (data, x, y) => {
 
 var partNumbers = [];
 
-async function partOne() {
+async function main() {
   const data = await fileReader.getLinesFromText("./puzzle.txt");
 
   for (let y = 0; y < data.length; y++) {
@@ -82,4 +82,4 @@ async function partOne() {
   console.log(sum);
 }
 
-partOne();
+main();
